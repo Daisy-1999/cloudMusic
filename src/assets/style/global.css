@@ -1,0 +1,15 @@
+/* 全局样式表 */
+html, body, #app{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+ul, li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+/* 解决了表头与内容不能匹配的问题 */
+.el-table th.gutter{
+    display: table-cell !important;
+ }

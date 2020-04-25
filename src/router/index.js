@@ -1,27 +1,34 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+
+import VueRouter from "vue-router";
+
+import Searchsong from '@/components/Searchsong.vue'
+import Mymusic from '@/components/Mymusic.vue'
+import RecommendMusic from '@/components/RecommendMusic.vue'
+
 
 Vue.use(VueRouter)
-
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
+ 
 
 const router = new VueRouter({
-  routes
+  routes:[
+    { path: '/', redirect: '/recommendmusic'},
+    { path: '/mymusic', component: Mymusic},
+    { path: '/recommendmusic', component: RecommendMusic},
+    { path: '/searchsong', component: Searchsong, name: 'searchsong'}
+  ]
 })
+//挂载路由导航守卫
+// router.beforeEach((to, from, next) => {
+  //to 将要访问的路径
+  //from 代表从哪个路径跳转而来
+  //next 是一个函数 表示放行
+  //next() 表示放行 next('./mymusic') 表示强制跳转
+  // if(to.path === '/recommendmusic') return next();
+  //获取token
+  // const tokenStr = window.sessionStorage.getItem('token')
+  // if(!tokenStr) return next('/recommendmusic')
+  // next()
+// })
 
 export default router
